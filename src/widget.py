@@ -1,5 +1,5 @@
-from masks import get_mask_account
-from masks import get_mask_card_number
+from src.masks import get_mask_account
+from src.masks  import get_mask_card_number
 from datetime import datetime
 
 def mask_account_card(cards_number: str) -> str:
@@ -16,5 +16,8 @@ def mask_account_card(cards_number: str) -> str:
 
 def get_data(data: str) -> str:
     """Функция возвращения даты"""
-    d = datetime.strptime(data, format("%y-%m-%dT%H:%M:%S.%f"))
-    return d.strptime("%d.%m.%y")
+    d = datetime.strptime(data, "%Y-%m-%dT%H:%M:%S.%f")
+    return d.strftime("%d.%m.%y")
+
+if __name__ == '__main__':
+    print(mask_account_card("Visa Platinum 8990922113665229"))
