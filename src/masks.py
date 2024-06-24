@@ -15,3 +15,4 @@ def get_mask_account(acc: str) -> str | None:
 
 
 print(get_mask_card_number(input()))
+print(get_mask_card_number(input()))
