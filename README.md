@@ -1,12 +1,12 @@
 # homework
-## Описание:
-Education - это проект по скрыванию информации о картах и счетах, также здесь есть функция которая принимает на вход список словарей и значение для ключа и создает новый на основе стэйт или даты
-## Установка:
+## Description:
+Education - this is a project to hide information about cards and accounts, and there is also a function that takes a list of dictionaries and the value for the key as input and creates a new one based on the state or date
+## Installation:
 
-1. Клонируйте репозиторий:
+1. Clone the repository:
 ```
 git clone https://github.com/heerooin/education.git
 ```
-2. Установите зависимости:
+2. Install dependencies:
 ```
 pip install -r requirements.txt
