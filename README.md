@@ -10,3 +10,5 @@ git clone https://github.com/heerooin/education.git
 2. Install dependencies:
 ```
 pip install -r requirements.txt
+
+## Testing:
