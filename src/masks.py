@@ -12,7 +12,3 @@ def get_mask_account(acc: str) -> str | None:
         return f"**{acc[16:20]}"
     else:
         return None
-
-
-print(get_mask_card_number(input()))
-print(get_mask_card_number(input()))

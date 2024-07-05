@@ -15,13 +15,7 @@ def filter_by_state(just_list: list[dict[str, Any]], state: str = "EXECUTED") ->
     return finish_list
 
 
-print(filter_by_state(just_list))
-
-
 def sort_by_date(just_list: list[dict[str, Any]], reverse: bool = True) -> list[dict[str, Any]]:
     """Функция сортировки по дате"""
-    sorted_just_list = sorted(just_list, key=lambda just_list: just_list["date"], reverse = reverse)
+    sorted_just_list=sorted(just_list, key=lambda just_list: just_list["date"], reverse = reverse)
     return  sorted_just_list
-
-
-print(sort_by_date(just_list))
