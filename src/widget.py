@@ -23,5 +23,5 @@ def get_data(data: str) -> str:
     return d.strftime("%d.%m.%Y")
 
 
-if __name__=='__main__':
+if __name__ == '__main__':
     print(mask_account_card("Visa Platinum 8990922113665229"))
