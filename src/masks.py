@@ -1,7 +1,7 @@
 def get_mask_card_number(card: str) -> str | None:
     """Функция маскировки номера карты"""
     if card.isdigit() and len(card) == 16:
-        return f"{card[:4]} {card[4:6]} ** **** {card[12:16]}"
+        return f"{card[:4]} {card[4:6]}** **** {card[12:16]}"
     else:
         return None
 
