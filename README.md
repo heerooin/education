@@ -16,3 +16,8 @@ pip install -r requirements.txt
 1. To test the desired function, go to the file that starts with "test". Then substitute the data you need to verify the correct execution of the function
 2. Run the pytest command to check the tests.
 3. Check that the tests are running correctly.
+
+## About generators
+
+This module can take information about currency in operation and filter it. Also can give description in operation.
+And last function generate card nubmer, you just need to give 2 digit, start and stop. It can company help in bank sector.
