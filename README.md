@@ -16,6 +16,18 @@ pip install -r requirements.txt
 2. Run the pytest command to check the tests.
 3. Check that the tests are running correctly.
 
+## About masks
+
+The masks function is used to mask the card or account number, you can test these functions by going to tests/test_masks
+
+## About widget
+
+The widget function also works with masking and date, it can mask a card or account and translate the date into an understandable format
+
+## About processing
+
+The processing function already works with operations, it can sort data by the key 'state' or 'date'. You can also test by going to the tests file by selecting test_processing
+
 ## About generators
 
 This module can take information about currency in operation and filter it. Also can give description in operation.
