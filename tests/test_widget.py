@@ -14,6 +14,6 @@ def test_mask_account_card(x, expected):
     assert mask_account_card('00') is None
 
 
-@pytest.fixture()
-def tests_get_data():
-    assert get_data('2024-03-11T02:26:18.671407') == '11.03.2024'
+@pytest.mark.parametrize('x, expected', [('2024-03-11T02:26:18.671407', '11.03.2024')])
+def test_get_data(x, expected):
+    assert get_data(x) == expected
