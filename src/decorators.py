@@ -4,31 +4,31 @@ from functools import wraps
 
 def log(filename: Any) -> Callable:
     """Декоратор логирования вызова функции и результат в консоль или файл"""
+
     def decorator(func: Callable) -> Callable:
         @wraps(func)
         def wrapper(*args: Any, **kwargs: Any) -> Any:
-            result = func(*args, **kwargs)
             try:
-                if filename:
-                    result = func(*args, **kwargs)
-                    with open(filename, 'a', encoding='utf-8') as file:
-                        file.write('\nmy_function ok')
-
-                else:
-                    print("\nmy_function ok")
-
+                result = func(*args, **kwargs)
+                log_message = f"{func.__name__} called with args: {args}, kwargs:{kwargs}. Result: {result}"
+                with open(filename, "a") as f:
+                    f.write(log_message + "\n")
+                print(log_message)
             except Exception as e:
-                with open(filename, 'a', encoding='utf-8') as file:
-                    file.write(f'\nmy_function error: {e} Inputs: {args}, {kwargs}')
-                raise Exception(f'Ошибка: {e}')
+                error_message = f"{func.__name__} error: {e}. Inputs:{args}, {kwargs}"
+                with open(filename, "a") as f:
+                    f.write(error_message + "\n")
+                print(error_message)
             return result
+
         return wrapper
 
     return decorator
 
-@log(filename="mylog.txt")
-def my_function(x, y):
-    """ Функция, складывающая 2 числа"""
-    return x + y
 
-print(my_function(12, 0))
+@log(filename="mylog.txt")
+def my_function(x: int, y: int) -> int:
+    return x / y
+
+
+my_function(2, 0)

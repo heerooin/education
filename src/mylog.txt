@@ -1,10 +1,5 @@
-
-my_function ok
-my_function ok
-my_function ok
-my_function ok
-my_function ok
-my_function ok
-my_function ok
-my_function ok
-my_function ok
+my_function called with args: ('2', '1'), kwargs:{}. Result: 21
+my_function called with args: ('2', '1'), kwargs:{}. Result: 21
+my_function called with args: (2, 1), kwargs:{}. Result: 3
+my_function called with args: (2, 1), kwargs:{}. Result: 2.0
+my_function error: division by zero. Inputs:(2, 0), {}
