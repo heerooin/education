@@ -1,32 +1,35 @@
-from typing import Any, Callable
+from typing import Any, Callable, Optional
 from functools import wraps
 
 
-def log(filename: Any) -> Callable:
+def log(filename: Optional[str] = None) -> Callable:
     """Декоратор логирования вызова функции и результат в консоль или файл"""
 
     def decorator(func: Callable) -> Callable:
         @wraps(func)
         def wrapper(*args: Any, **kwargs: Any) -> Any:
+            log_message = ''
             try:
                 result = func(*args, **kwargs)
                 log_message = f"{func.__name__} called with args: {args}, kwargs:{kwargs}. Result: {result}"
-                with open(filename, "a") as f:
-                    f.write(log_message + "\n")
-                print(log_message)
+                return result
             except Exception as e:
-                error_message = f"{func.__name__} error: {e}. Inputs:{args}, {kwargs}"
-                with open(filename, "a") as f:
-                    f.write(error_message + "\n")
-                print(error_message)
-            return result
+                log_message = f"{func.__name__} error: {e}. Inputs:{args}, {kwargs}"
+                raise e
+            finally:
+                # если filename указан - записывать в файл, если нет - выводить сообщение в консоль
+                if filename:
+                    with open(filename, "a") as f:
+                        f.write(log_message + "\n")
+                else:
+                    print(log_message)
 
         return wrapper
 
     return decorator
 
 
-@log(filename="mylog.txt")
+@log()
 def my_function(x: int, y: int) -> int:
     return x / y
 
