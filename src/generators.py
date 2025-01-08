@@ -1,4 +1,5 @@
-from typing import Any, Dict, List, Generator
+from typing import Any, Dict, Generator, List
+
 transactions = (
     [
         {
