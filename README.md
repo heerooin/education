@@ -32,3 +32,4 @@ The processing function already works with operations, it can sort data by the k
 
 This module can take information about currency in operation and filter it. Also can give description in operation.
 And last function generate card nubmer, you just need to give 2 digit, start and stop. It can company help in bank sector.
+
