@@ -1,5 +1,5 @@
-from typing import Any, Callable, Optional
 from functools import wraps
+from typing import Any, Callable, Optional
 
 
 def log(filename: Optional[str] = None) -> Callable:
@@ -29,9 +29,9 @@ def log(filename: Optional[str] = None) -> Callable:
     return decorator
 
 
-@log()
+@log(filename="mylog.txt")
 def my_function(x: int, y: int) -> int:
-    return x / y
+    return x + y
 
 
-my_function(2, 1)
+my_function(1, 3)
