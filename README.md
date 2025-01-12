@@ -33,3 +33,15 @@ The processing function already works with operations, it can sort data by the k
 This module can take information about currency in operation and filter it. Also can give description in operation.
 And last function generate card nubmer, you just need to give 2 digit, start and stop. It can company help in bank sector.
 
+## About utils
+
+This module is used to send a file with operations in the form of JSON to it.
+
+## About utils
+
+This module is used to send a file with operations in the form of JSON to it.
+
+## About external_api
+
+This module is used to read the transaction by IP and outputs the transaction amount. The API is also used to convert to rubles.
+
