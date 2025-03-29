@@ -1,6 +1,8 @@
 import unittest
 from unittest.mock import mock_open, patch
+
 from utils import open_file
+
 
 class TestOpenFile(unittest.TestCase):
     @patch("os.path.exists", return_value=False)
@@ -34,6 +36,7 @@ class TestOpenFile(unittest.TestCase):
         self.assertEqual(result, [])
         mock_exists.assert_called_once_with("os_error_file.json")
         mock_file.assert_called_once_with("os_error_file.json", encoding="utf-8")
+
 
 if __name__ == "__main__":
     unittest.main()

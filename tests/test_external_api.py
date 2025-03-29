@@ -1,12 +1,8 @@
 import unittest
-from unittest.mock import patch, mock_open
-import requests
-from external_api import (
-    load_transactions,
-    get_transaction_by_id,
-    convert_to_rubles_by_transaction_id,
-OPERATIONS_FILE
-)
+from unittest.mock import mock_open, patch
+
+from external_api import OPERATIONS_FILE, convert_to_rubles_by_transaction_id, get_transaction_by_id, load_transactions
+
 
 class TestTransactionUtils(unittest.TestCase):
     @patch("os.path.exists", return_value=True)
@@ -41,6 +37,7 @@ class TestTransactionUtils(unittest.TestCase):
 
         mock_get_transaction.assert_called_once_with(1)
         mock_requests.assert_not_called()
+
 
 if __name__ == "__main__":
     unittest.main()

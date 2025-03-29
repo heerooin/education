@@ -1,4 +1,5 @@
 import pytest
+
 from src.decorators import log, my_function
 
 
@@ -19,4 +20,3 @@ def test_log(capsys):
     except TypeError as e:
         captured = capsys.readouterr()
         assert "my function error: " in captured.out
-
