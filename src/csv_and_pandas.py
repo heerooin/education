@@ -13,8 +13,3 @@ def csv_open(path: str) -> list[dict]:
 def xlsx_open(path: str) -> list[dict]:
     excel_data = pd.read_excel(path)
     return excel_data
-
-
-csv_open("D:/Programming/pyCharm/pyCharmProjects/pythonProject1/data/transactions.csv")
-xlsx_open("D:/Programming/pyCharm/pyCharmProjects/pythonProject1/data/transactions_excel.xlsx")
-print(xlsx_open("D:/Programming/pyCharm/pyCharmProjects/pythonProject1/data/transactions_excel.xlsx"))

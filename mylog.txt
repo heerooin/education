@@ -50,3 +50,8 @@ my_function called with args: (1, 3), kwargs:{}. Result: 4
 my_function called with args: (1, 3), kwargs:{}. Result: 4
 my_function called with args: (1, 3), kwargs:{}. Result: 4
 my_function called with args: (1, 3), kwargs:{}. Result: 4
+my_function called with args: (1, 3), kwargs:{}. Result: 4
+my_function called with args: (1, 3), kwargs:{}. Result: 4
+my_function called with args: (1, 3), kwargs:{}. Result: 4
+my_function called with args: (1, 3), kwargs:{}. Result: 4
+my_function called with args: (1, 3), kwargs:{}. Result: 4
