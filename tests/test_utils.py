@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import mock_open, patch
 
-from utils import open_file
+from src.utils import open_file
 
 
 class TestOpenFile(unittest.TestCase):

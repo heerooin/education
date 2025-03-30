@@ -1,5 +1,4 @@
 import csv
-
 import pandas as pd
 
 
@@ -13,8 +12,9 @@ def csv_open(path: str) -> list[dict]:
 
 def xlsx_open(path: str) -> list[dict]:
     excel_data = pd.read_excel(path)
-    print(excel_data)
+    return excel_data
 
 
-# csv_open('../data/transactions.csv')
-xlsx_open('../data/transactions_excel.xlsx')
+csv_open("D:/Programming/pyCharm/pyCharmProjects/pythonProject1/data/transactions.csv")
+xlsx_open("D:/Programming/pyCharm/pyCharmProjects/pythonProject1/data/transactions_excel.xlsx")
+print(xlsx_open("D:/Programming/pyCharm/pyCharmProjects/pythonProject1/data/transactions_excel.xlsx"))

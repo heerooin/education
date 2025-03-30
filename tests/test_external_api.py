@@ -1,7 +1,6 @@
 import unittest
 from unittest.mock import mock_open, patch
-
-from external_api import OPERATIONS_FILE, convert_to_rubles_by_transaction_id, get_transaction_by_id, load_transactions
+from src.external_api import OPERATIONS_FILE, convert_to_rubles_by_transaction_id, get_transaction_by_id, load_transactions
 
 
 class TestTransactionUtils(unittest.TestCase):
