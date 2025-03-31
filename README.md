@@ -33,3 +33,6 @@ The processing function already works with operations, it can sort data by the k
 This module can take information about currency in operation and filter it. Also can give description in operation.
 And last function generate card nubmer, you just need to give 2 digit, start and stop. It can company help in bank sector.
 
+## About CSV AND PANDAS
+
+The module accepts csv and xlsx files and provides a list of dictionaries with operations. The current task is to process financial transactions
