@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import patch
 import pandas as pd
-import csv_and_pandas
+from src import csv_and_pandas
 
 
 @patch('pd.read_excel')
