@@ -13,7 +13,9 @@ def csv_open(path: str) -> list[dict]:
         return csv_transactions
 
 
-def xlsx_open(path: str) -> list[dict]:
-    excel_data = pd.read_excel(path)
-    xlsx_transactions = excel_data.to_dict(orient="records")
-    return xlsx_transactions
+def xlsx_open(file_path):
+    try:
+        df = pd.read_excel(file_path, sheet_name="Sheet1", dtype=str)
+        return df.to_dict("records")
+    except FileNotFoundError:
+        return []
