@@ -6,7 +6,7 @@ from src.utils import open_file
 
 class TestOpenFile(unittest.TestCase):
     @patch("os.path.exists", return_value=False)
-    def test_file_not_exists(self, mock_exists):
+    def test_file_not_exists( mock_exists):
         """
         Тестируем случай, когда файл не существует.
         """
@@ -16,7 +16,7 @@ class TestOpenFile(unittest.TestCase):
 
     @patch("os.path.exists", return_value=True)
     @patch("builtins.open", new_callable=mock_open, read_data='[{"key": "value"}]')
-    def test_file_contains_valid_list(self, mock_file, mock_exists):
+    def test_file_contains_valid_list( mock_file, mock_exists):
         """
         Тестируем случай, когда файл существует и содержит список.
         """
@@ -27,7 +27,7 @@ class TestOpenFile(unittest.TestCase):
 
     @patch("os.path.exists", return_value=True)
     @patch("builtins.open", new_callable=mock_open)
-    def test_file_os_error(self, mock_file, mock_exists):
+    def test_file_os_error( mock_file, mock_exists):
         """
         Тестируем случай, когда возникает ошибка при открытии файла (например, OSError).
         """

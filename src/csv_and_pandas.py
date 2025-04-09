@@ -15,6 +15,5 @@ def csv_open(path: str) -> list[dict]:
 
 def xlsx_open(path: str) -> list[dict]:
     excel_data = pd.read_excel(path)
-    xlsx_transactions = excel_data.to_dict()
     xlsx_transactions = excel_data.to_dict(orient="records")
     return xlsx_transactions

@@ -6,7 +6,7 @@ from src.external_api import OPERATIONS_FILE, convert_to_rubles_by_transaction_i
 class TestTransactionUtils(unittest.TestCase):
     @patch("os.path.exists", return_value=True)
     @patch("builtins.open", new_callable=mock_open, read_data='[{"id": 1, "operationAmount": {"amount": "100.0", "currency": {"code": "USD"}}}]')
-    def test_load_transactions_valid_file(self, mock_file, mock_exists):
+    def test_load_transactions_valid_file( mock_file, mock_exists):
         """
         Проверяем, что транзакции загружаются корректно.
         """
@@ -16,8 +16,8 @@ class TestTransactionUtils(unittest.TestCase):
         mock_exists.assert_called_once_with(OPERATIONS_FILE)
         mock_file.assert_called_once_with(OPERATIONS_FILE, "r", encoding="utf-8")
 
-    @patch("external_api.load_transactions", return_value=[])
-    def test_get_transaction_by_id_not_found(self, mock_load_transactions):
+    @patch("src.external_api.load_transactions", return_value=[])
+    def test_get_transaction_by_id_not_found(mock_load_transactions):
         """
         Проверяем, что возвращается None, если транзакция не найдена.
         """
@@ -25,9 +25,9 @@ class TestTransactionUtils(unittest.TestCase):
         self.assertIsNone(transaction)
         mock_load_transactions.assert_called_once()
 
-    @patch("external_api.requests.get")
-    @patch("external_api.get_transaction_by_id", return_value={"id": 1, "operationAmount": {"amount": "100.0", "currency": {"code": "RUB"}}})
-    def test_convert_to_rubles_by_transaction_id_rub(self, mock_get_transaction, mock_requests):
+    @patch("src.external_api.requests.get")
+    @patch("src.external_api.get_transaction_by_id", return_value={"id": 1, "operationAmount": {"amount": "100.0", "currency": {"code": "RUB"}}})
+    def test_convert_to_rubles_by_transaction_id_rub( mock_get_transaction, mock_requests):
         """
         Проверяем, что сумма возвращается без конвертации, если валюта RUB.
         """
