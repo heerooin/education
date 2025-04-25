@@ -15,7 +15,7 @@ def csv_open(path: str) -> list[dict]:
 
 def xlsx_open(file_path):
     try:
-        df = pd.read_excel(file_path, sheet_name="Sheet1", dtype=str)
+        df = pd.read_excel(file_path, dtype=str)
         return df.to_dict("records")
     except FileNotFoundError:
         return []
