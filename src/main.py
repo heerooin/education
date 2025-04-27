@@ -7,6 +7,8 @@ from src.masks import get_mask_card_number, get_mask_account
 from src.widget import get_data, mask_account_card
 from src.processing import sort_by_date
 from src.generators import filter_by_currency
+from src.re_coll_rand import bank_operations
+
 
 
 def main():
@@ -39,7 +41,6 @@ def main():
         status = input()
         if status.upper() in value:
             status = status.upper()
-            result = []
             for i in final:
                 if 'state' in i:
                     if i['state'] == status:
@@ -92,7 +93,7 @@ def main():
         print(f'Всего банковских операций в выборке: {len(final_result)}')
         for i in final_result:
             if "date" in i and "description" in i:
-                print(f'{get_data(i["date"])} {i["description"]}')
+                print(f'{i["date"]} {i["description"]}')
 
                 if "from" in i and "to" in i:
                     if i["description"] == "Перевод со счета на счет":
@@ -114,7 +115,10 @@ def main():
                     amount = i["operationAmount"]["amount"]
                     currency_name = i["operationAmount"]["currency"]["name"]
                     print(f'Сумма: {amount} {currency_name}')
-                print()
+                else:
+                    amount = i["amount"]
+                    currency_name = i["currency_name"]
+                    print(f'Сумма: {amount} {currency_name}')
     else:
         print("Не найдено ни одной транзакции, подходящей под ваши\n"
               "условия фильтрации")
