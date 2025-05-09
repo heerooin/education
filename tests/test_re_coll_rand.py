@@ -1,5 +1,5 @@
 import pytest
-from unittest.mock import patch, mock_open
+from unittest.mock import patch
 from src.re_coll_rand import bank_operations, category_operations
 
 

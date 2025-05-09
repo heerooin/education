@@ -80,6 +80,7 @@ transactions = (
     ]
 )
 
+
 def filter_by_currency(transactions, currency):
     """Функция фильтраций по типу валюты USD"""
     for transaction in transactions:

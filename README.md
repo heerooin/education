@@ -36,3 +36,8 @@ And last function generate card nubmer, you just need to give 2 digit, start and
 ## About CSV AND PANDAS
 
 The module accepts csv and xlsx files and provides a list of dictionaries with operations. The current task is to process financial transactions
+
+## OOP
+
+Two functions have been added that define classes for working with these categories and products.
+

@@ -1,14 +1,10 @@
-import re
-import json
 from src.utils import open_file
-from collections import Counter
 from src.csv_and_pandas import csv_open, xlsx_open
-from src.masks import get_mask_card_number, get_mask_account
-from src.widget import get_data, mask_account_card
+from src.masks import get_mask_account
+from src.widget import mask_account_card
 from src.processing import sort_by_date
 from src.generators import filter_by_currency
 from src.re_coll_rand import bank_operations
-
 
 
 def main():
@@ -75,8 +71,7 @@ def main():
             except StopIteration:
                 break
     else:
-        final_result = result 
-
+        final_result = result
     print("\nОтфильтровать список транзакций по определенному слову "
           "в описании? Да/Нет\n")
     discr = input()
