@@ -27,3 +27,8 @@ def test_tv(category_tv):
     assert category_tv.description == "Современный телевизор, который позволяет наслаждаться просмотром, станет вашим другом и помощником"
     assert category_tv.products == ["Телевизоры",
                                     "Современный телевизор, который позволяет наслаждаться просмотром, станет вашим другом и помощником"]
+
+
+def test_category_str(self, sample_products):
+    category = Category("Test Category", "Test Description", sample_products)
+    assert str(category) == "Test Category, количество продуктов: 2 шт."

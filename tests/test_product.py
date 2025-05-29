@@ -37,6 +37,7 @@ def test_xiaomi(product_xiaomi):
     assert product_xiaomi.price == 31000.0
     assert product_xiaomi.quantity == 14
 
+
 def test_product_creation():
     product = Product("Телефон", "Смартфон", 50000.0, 10)
     assert product.name == "Телефон"
@@ -44,10 +45,12 @@ def test_product_creation():
     assert product.price == 50000.0
     assert product.quantity == 10
 
+
 def test_price_setter_positive():
     product = Product("Ноутбук", "Игровой", 100000.0, 5)
     product.price = 90000.0
     assert product.price == 90000.0
+
 
 def test_price_setter_negative(capsys):
     product = Product("Планшет", "Графический", 30000.0, 3)
@@ -55,6 +58,7 @@ def test_price_setter_negative(capsys):
     captured = capsys.readouterr()
     assert "Цена не должна быть нулевая или отрицательная" in captured.out
     assert product.price == 30000.0
+
 
 def test_new_product_classmethod():
     product_data = {
@@ -68,7 +72,20 @@ def test_new_product_classmethod():
     assert product.price == 25000.0
     assert product.quantity == 7
 
+
 def test_private_price_access():
     product = Product("Клавиатура", "Механическая", 5000.0, 15)
     with pytest.raises(AttributeError):
         print(product.__price)
+
+
+def test_product_str():
+        product = Product("Test Product", "Test Description", 100.0, 10)
+        assert str(product) == "Test Product, 100.0 руб. Остаток: 10"
+
+
+def test_add_products():
+    """Тестирование сложения продуктов (стоимость * количество)."""
+    product1 = Product("Product1", "Desc1", 100.0, 2)
+    product2 = Product("Product2", "Desc2", 200.0, 3)
+    assert product1 + product2 == (100.0 * 2) + (200.0 * 3)

@@ -19,3 +19,7 @@ def xlsx_open(file_path):
         return df.to_dict("records")
     except FileNotFoundError:
         return []
+
+
+if __name__ == '__main__':
+    print(xlsx_open('data/transactions_excel.xlsx'))
