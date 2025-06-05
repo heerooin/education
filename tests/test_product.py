@@ -90,14 +90,14 @@ def test_add_products():
     assert product1 + product2 == (100.0 * 2) + (200.0 * 3)
 
 
-def test_add_valid_product(self, sample_smartphone, sample_category):
+def test_add_valid_product(sample_smartphone, sample_category):
     initial_count = len(sample_category._Category__products)
     sample_category.add_product(sample_smartphone)
     assert len(sample_category._Category__products) == initial_count + 1
     assert sample_smartphone in sample_category._Category__products
 
 
-def test_add_duplicate_product(self, sample_smartphone, sample_category):
+def test_add_duplicate_product(sample_smartphone, sample_category):
     sample_category.add_product(sample_smartphone)
     initial_quantity = sample_smartphone.quantity
     duplicate = Smartphone(
@@ -116,7 +116,7 @@ def test_add_duplicate_product(self, sample_smartphone, sample_category):
     assert sample_category._Category__products[0].price == duplicate.price
 
 
-def test_add_invalid_type(self, sample_category):
+def test_add_invalid_type(sample_category):
     with pytest.raises(TypeError, match="Можно добавлять только объекты класса Product или его наследников"):
         sample_category.add_product("invalid product string")
 
@@ -127,7 +127,7 @@ def test_add_invalid_type(self, sample_category):
         sample_category.add_product({"name": "Not a product"})
 
 
-def test_add_different_product_types(self, sample_smartphone, sample_lawn_grass, sample_category):
+def test_add_different_product_types(sample_smartphone, sample_lawn_grass, sample_category):
     sample_category.add_product(sample_smartphone)
     sample_category.add_product(sample_lawn_grass)
     assert len(sample_category._Category__products) == 2
@@ -135,7 +135,7 @@ def test_add_different_product_types(self, sample_smartphone, sample_lawn_grass,
     assert isinstance(sample_category._Category__products[1], LawnGrass)
 
 
-def test_product_count_updates(self, sample_smartphone, sample_category):
+def test_product_count_updates(sample_smartphone, sample_category):
     initial_count = Category.product_count
     sample_category.add_product(sample_smartphone)
     assert Category.product_count == initial_count + 1
@@ -146,13 +146,13 @@ def sample_products(sample_smartphone, sample_lawn_grass):
     return [sample_smartphone, sample_lawn_grass]
 
 
-def test_category_creation(self, sample_products):
+def test_category_creation(sample_products):
     category = Category("Test", "Test desc", sample_products)
     assert len(category._Category__products) == len(sample_products)
     assert all(isinstance(p, Product) for p in category._Category__products)
 
 
-def test_products_property(self, sample_category, sample_smartphone):
+def test_products_property(sample_category, sample_smartphone):
     sample_category.add_product(sample_smartphone)
     products_str = sample_category.products
     assert sample_smartphone.name in products_str
@@ -160,7 +160,7 @@ def test_products_property(self, sample_category, sample_smartphone):
     assert str(sample_smartphone.quantity) in products_str
 
 
-def test_str_representation(self, sample_category):
+def test_str_representation(sample_category):
     assert "количество продуктов" in str(sample_category)
 
 
@@ -194,3 +194,27 @@ def sample_lawn_grass():
 @pytest.fixture
 def sample_category():
     return Category("Test Category", "Test Description", [])
+
+
+def test_mixin_logging(capsys):
+    # Clear any previous output
+    capsys.readouterr()
+    
+    # Create product and capture output
+    product = Product("Test", "Description", 100.0, 5)
+    captured = capsys.readouterr()
+    
+    # Check the output
+    expected = "Создан объект класса Product с параметрами: Test, Description, 100.0, 5"
+    assert expected in captured.out
+
+
+def test_product_inheritance():
+    product = Product("Test", "Description", 100.0, 5)
+    assert isinstance(product, Product)
+    assert hasattr(product, 'name')
+    assert hasattr(product, 'description')
+    assert hasattr(product, 'price')
+    assert hasattr(product, 'quantity')
+    assert hasattr(product, '__str__')
+    assert hasattr(product, '__add__')
