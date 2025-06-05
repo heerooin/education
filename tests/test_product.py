@@ -1,5 +1,5 @@
 import pytest
-from src.oop import Product
+from src.oop import Product, Smartphone, LawnGrass, Category
 
 
 @pytest.fixture()
@@ -80,12 +80,117 @@ def test_private_price_access():
 
 
 def test_product_str():
-        product = Product("Test Product", "Test Description", 100.0, 10)
-        assert str(product) == "Test Product, 100.0 руб. Остаток: 10"
+    product = Product("Test Product", "Test Description", 100.0, 10)
+    assert str(product) == "Test Product, 100.0 руб. Остаток: 10"
 
 
 def test_add_products():
-    """Тестирование сложения продуктов (стоимость * количество)."""
     product1 = Product("Product1", "Desc1", 100.0, 2)
     product2 = Product("Product2", "Desc2", 200.0, 3)
     assert product1 + product2 == (100.0 * 2) + (200.0 * 3)
+
+
+def test_add_valid_product(self, sample_smartphone, sample_category):
+    initial_count = len(sample_category._Category__products)
+    sample_category.add_product(sample_smartphone)
+    assert len(sample_category._Category__products) == initial_count + 1
+    assert sample_smartphone in sample_category._Category__products
+
+
+def test_add_duplicate_product(self, sample_smartphone, sample_category):
+    sample_category.add_product(sample_smartphone)
+    initial_quantity = sample_smartphone.quantity
+    duplicate = Smartphone(
+        name=sample_smartphone.name,
+        description="New description",
+        price=sample_smartphone.price + 1000,
+        quantity=5,
+        efficiency="High",
+        model="New Model",
+        memory=512,
+        color="Black"
+    )
+    sample_category.add_product(duplicate)
+    assert len(sample_category._Category__products) == 1
+    assert sample_category._Category__products[0].quantity == initial_quantity + duplicate.quantity
+    assert sample_category._Category__products[0].price == duplicate.price
+
+
+def test_add_invalid_type(self, sample_category):
+    with pytest.raises(TypeError, match="Можно добавлять только объекты класса Product или его наследников"):
+        sample_category.add_product("invalid product string")
+
+    with pytest.raises(TypeError):
+        sample_category.add_product(12345)
+
+    with pytest.raises(TypeError):
+        sample_category.add_product({"name": "Not a product"})
+
+
+def test_add_different_product_types(self, sample_smartphone, sample_lawn_grass, sample_category):
+    sample_category.add_product(sample_smartphone)
+    sample_category.add_product(sample_lawn_grass)
+    assert len(sample_category._Category__products) == 2
+    assert isinstance(sample_category._Category__products[0], Smartphone)
+    assert isinstance(sample_category._Category__products[1], LawnGrass)
+
+
+def test_product_count_updates(self, sample_smartphone, sample_category):
+    initial_count = Category.product_count
+    sample_category.add_product(sample_smartphone)
+    assert Category.product_count == initial_count + 1
+
+
+@pytest.fixture
+def sample_products(sample_smartphone, sample_lawn_grass):
+    return [sample_smartphone, sample_lawn_grass]
+
+
+def test_category_creation(self, sample_products):
+    category = Category("Test", "Test desc", sample_products)
+    assert len(category._Category__products) == len(sample_products)
+    assert all(isinstance(p, Product) for p in category._Category__products)
+
+
+def test_products_property(self, sample_category, sample_smartphone):
+    sample_category.add_product(sample_smartphone)
+    products_str = sample_category.products
+    assert sample_smartphone.name in products_str
+    assert str(sample_smartphone.price) in products_str
+    assert str(sample_smartphone.quantity) in products_str
+
+
+def test_str_representation(self, sample_category):
+    assert "количество продуктов" in str(sample_category)
+
+
+@pytest.fixture
+def sample_smartphone():
+    return Smartphone(
+        name="Test Phone",
+        description="Test Desc",
+        price=10000,
+        quantity=5,
+        efficiency="High",
+        model="X100",
+        memory=256,
+        color="Black"
+    )
+
+
+@pytest.fixture
+def sample_lawn_grass():
+    return LawnGrass(
+        name="Test Grass",
+        description="Test Desc",
+        price=500,
+        quantity=100,
+        country="Russia",
+        germination_period="14 дней",
+        color="Green"
+    )
+
+
+@pytest.fixture
+def sample_category():
+    return Category("Test Category", "Test Description", [])

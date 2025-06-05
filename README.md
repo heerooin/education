@@ -39,5 +39,5 @@ The module accepts csv and xlsx files and provides a list of dictionaries with o
 
 ## OOP
 
-Two functions have been added that define classes for working with these categories and products.
+Two functions have been added that define classes for working with these categories and products. The `add_product` method of the `Category` class has been improved, which now correctly accepts both objects of the base class `Product` and its heirs - `Smartphone` and `LawnGrass`, with verification via `isinstance()'. The logic of combining duplicates for all types of products has been added, including updating the quantity for smartphones and lawn grass, as well as protection against incompatible types with an explicit error message.
 
