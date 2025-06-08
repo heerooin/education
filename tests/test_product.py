@@ -218,3 +218,26 @@ def test_product_inheritance():
     assert hasattr(product, 'quantity')
     assert hasattr(product, '__str__')
     assert hasattr(product, '__add__')
+
+
+def test_middle_price():
+    product1 = Product("Samsung Galaxy S23 Ultra", "256GB, Серый цвет, 200MP камера", 180000.0, 5)
+    product2 = Product("Iphone 15", "512GB, Gray space", 210000.0, 8)
+    product3 = Product("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14)
+
+    category1 = Category("Смартфоны", "Категория смартфонов", [product1, product2, product3])
+    expected_price1 = (180000.0 * 5 + 210000.0 * 8 + 31000.0 * 14) / (5 + 8 + 14)
+    assert abs(category1.middle_price() - expected_price1) < 0.01, "Неверный расчет средней цены для категории с несколькими товарами"
+
+    category_empty = Category("Пустая категория", "Категория без продуктов", [])
+    assert category_empty.middle_price() == 0, "Средняя цена пустой категории должна быть 0"
+
+    category_single = Category("Один товар", "Категория с одним товаром", [product1])
+    assert category_single.middle_price() == 180000.0, "Средняя цена категории с одним товаром должна равняться цене товара"
+
+    product4 = Product("Test Product", "Test Description", 100.0, 10)
+    product5 = Product("Test Product 2", "Test Description 2", 200.0, 5)
+    category_mixed = Category("Смешанная категория", "Категория с разным количеством товаров", [product4, product5])
+    expected_price2 = (100.0 * 10 + 200.0 * 5) / (10 + 5)
+    assert abs(category_mixed.middle_price() - expected_price2) < 0.01, "Неверный расчет средней цены для категории с разным количеством товаров"
+
