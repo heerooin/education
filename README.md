@@ -33,15 +33,11 @@ The processing function already works with operations, it can sort data by the k
 This module can take information about currency in operation and filter it. Also can give description in operation.
 And last function generate card nubmer, you just need to give 2 digit, start and stop. It can company help in bank sector.
 
-## About utils
+## About CSV AND PANDAS
 
-This module is used to send a file with operations in the form of JSON to it.
+The module accepts csv and xlsx files and provides a list of dictionaries with operations. The current task is to process financial transactions
 
-## About utils
+## OOP
 
-This module is used to send a file with operations in the form of JSON to it.
-
-## About external_api
-
-This module is used to read the transaction by IP and outputs the transaction amount. The API is also used to convert to rubles.
+Two functions have been added that define classes for working with these categories and products. The `add_product` method of the `Category` class has been improved, which now correctly accepts both objects of the base class `Product` and its heirs - `Smartphone` and `LawnGrass`, with verification via `isinstance()'. The logic of combining duplicates for all types of products has been added, including updating the quantity for smartphones and lawn grass, as well as protection against incompatible types with an explicit error message.
 

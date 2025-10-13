@@ -4,7 +4,7 @@ import pandas as pd
 
 def csv_open(path: str) -> list[dict]:
     csv_transactions = []
-    with open(path) as file:
+    with open(path, encoding="utf-8") as file:
         reader = csv.reader(file, delimiter=';')
         headers = next(reader)
         for row in reader:
@@ -13,7 +13,13 @@ def csv_open(path: str) -> list[dict]:
         return csv_transactions
 
 
-def xlsx_open(path: str) -> list[dict]:
-    excel_data = pd.read_excel(path)
-    xlsx_transactions = excel_data.to_dict()
-    return xlsx_transactions
+def xlsx_open(file_path):
+    try:
+        df = pd.read_excel(file_path, dtype=str)
+        return df.to_dict("records")
+    except FileNotFoundError:
+        return []
+
+
+if __name__ == '__main__':
+    print(xlsx_open('data/transactions_excel.xlsx'))

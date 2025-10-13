@@ -3,7 +3,7 @@ from typing import Optional
 
 logger = logging.getLogger("masks")
 logger.setLevel(logging.DEBUG)
-log_file = "D:/Programming/pyCharm/pyCharmProjects/pythonProject1/logs/masks.log"
+log_file = "../masks.log"
 file_handler = logging.FileHandler(log_file, mode="w", encoding="utf-8")
 file_formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s: %(message)s")
 file_handler.setFormatter(file_formatter)

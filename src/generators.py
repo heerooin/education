@@ -81,11 +81,15 @@ transactions = (
 )
 
 
-def filter_by_currency(transactions: List[Dict[str, Any]], currency: str) -> Generator[str | int, None, None]:
+def filter_by_currency(transactions, currency):
     """Функция фильтраций по типу валюты USD"""
-    for i in transactions:
-        if i['operationAmount']['currency']['code'] == currency:
-            yield i
+    for transaction in transactions:
+        if 'operationAmount' in transaction:
+            if transaction['operationAmount']['currency']['code'] == currency:
+                yield transaction
+        elif 'currency_code' in transaction:
+            if transaction['currency_code'] == currency:
+                yield transaction
 
 
 def transaction_descriptions(transactions: List[Dict[str, Any]]) -> Generator[str | int, None, None]:
